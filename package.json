@@ -18,5 +18,9 @@
   "homepage": "https://github.com/jenslind/electron-gh-releases-test-v2#readme",
   "devDependencies": {
     "electron-prebuilt": "^0.35.1"
+  },
+  "dependencies": {
+    "got": "^5.1.0",
+    "semver": "^5.1.0"
   }
 }
