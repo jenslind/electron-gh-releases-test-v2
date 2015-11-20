@@ -53,7 +53,7 @@ var GhReleases = (function (_events$EventEmitter) {
     value: function _getLatestTag() {
       var url = this.repoUrl + '/releases/latest';
       return got.head(url).then(function (res) {
-        var latestTag = res.req.path.split('/').pop();
+        var latestTag = res.socket._httpMessage.path.split('/').pop();
         return latestTag;
       }).catch(function (err) {
         if (err) throw new Error('Unable to get latest release tag from Github.');
@@ -105,9 +105,16 @@ var GhReleases = (function (_events$EventEmitter) {
       // Make sure feedUrl exists
       return got.get(feedUrl).then(function (res) {
         if (res.statusCode !== 200) throw new Error();
+
+        // Make sure the feedUrl links to latest tag
+        var zipUrl = JSON.parse(res.body).url;
+        if (semver.clean(zipUrl.split('/').slice(-2, -1)[0]) !== semver.clean(tag)) {
+          throw new Error();
+        }
+
         return feedUrl;
       }).catch(function (err) {
-        if (err) throw new Error('Could not get feed URL.');
+        if (err) throw new Error('auto_updater.json does not exist or does not links to the latest GitHub release.');
       });
     }
 
