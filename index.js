@@ -27,11 +27,18 @@ app.on('ready', function () {
 
   updater.check(function (err, status) {
     if (!err && status) {
+      console.log('Check: ', err)
+      console.log('Check: ', status)
       updater.download()
     }
   })
 
   updater.on('update-downloaded', function () {
+    console.log('Update downloaded')
     updater.install()
+  })
+
+  updater.on('error', function (err) {
+    console.log('On error: ', err)
   })
 })
