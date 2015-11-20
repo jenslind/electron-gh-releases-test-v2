@@ -1,1 +1,8 @@
+<script>
+  var ipcRenderer = require('electron').ipcRenderer
+  ipcRenderer.on('log', function (event, msg) {
+    console.log(msg)
+  })
+</script>
+
 <b>version: 1.0.0</b>

@@ -26,19 +26,15 @@ app.on('ready', function () {
   mainWindow.webContents.openDevTools()
 
   updater.check(function (err, status) {
+    mainWindow.webContents.send('log', 'Check:' + err)
+    mainWindow.webContents.send('log', 'Check:' + status)
     if (!err && status) {
-      console.log('Check: ', err)
-      console.log('Check: ', status)
       updater.download()
     }
   })
 
   updater.on('update-downloaded', function () {
-    console.log('Update downloaded')
+    mainWindow.webContents.send('log', 'Update downloaded')
     updater.install()
-  })
-
-  updater.on('error', function (err) {
-    console.log('On error: ', err)
   })
 })
