@@ -41,9 +41,6 @@ var GhReleases = (function (_events$EventEmitter) {
 
       return self.emit('update-downloaded', args);
     });
-    self.autoUpdater.on('error', function (err) {
-      return self.emit('error', err);
-    });
     return _this3;
   }
 
