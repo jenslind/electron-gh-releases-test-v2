@@ -3,7 +3,7 @@
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const GhReleases = require('./GhReleases')
+const GhReleases = require('electron-gh-releases')
 
 let mainWindow = null;
 

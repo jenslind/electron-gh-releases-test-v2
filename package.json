@@ -25,7 +25,6 @@
     "grunt-electron-installer": "^1.1.0"
   },
   "dependencies": {
-    "got": "^5.1.0",
-    "semver": "^5.1.0"
+    "electron-gh-releases": "^2.0.0"
   }
 }
