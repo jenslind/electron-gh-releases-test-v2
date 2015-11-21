@@ -2,10 +2,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
     'create-windows-installer': {
       x64: {
-        appDirectory: './',
-        outputDirectory: './windows_installer',
+        appDirectory: './Test-win32-x64',
+        outputDirectory: './Test-win32-x64-installer',
         authors: 'Testing Test',
-        exe: 'TestSetup.exe'
+        exe: 'Test.exe'
       }
     }
   });

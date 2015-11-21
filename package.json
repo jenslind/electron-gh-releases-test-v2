@@ -1,11 +1,12 @@
 {
   "name": "electron-gh-releases-test-v2",
   "version": "1.0.3",
-  "description": "",
+  "description": "Test app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "electron-packager . Test --platform=darwin --arch=x64 --version=0.35.1 --overwrite --sign=Jens Lind"
+    "build-darwin": "electron-packager . Test --platform=darwin --arch=x64 --version=0.35.1 --overwrite --sign=Jens Lind",
+    "build-win32": "electron-packager . Test --platform=win32 --arch=x64 --version=0.35.1 --overwrite --asar=true"
   },
   "repository": {
     "type": "git",
