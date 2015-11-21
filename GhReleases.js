@@ -13,11 +13,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var semver = require('semver');
-var autoUpdater = require('auto-updater');
+var autoUpdater = require('electron').autoUpdater;
 var got = require('got');
 var events = require('events');
 
 var WIN32 = process.platform === 'win32';
+var DARWIN = process.platform === 'darwin';
 
 var GhReleases = (function (_events$EventEmitter) {
   _inherits(GhReleases, _events$EventEmitter);
@@ -127,6 +128,8 @@ var GhReleases = (function (_events$EventEmitter) {
     value: function check(cb) {
       var _this2 = this;
 
+      if (!DARWIN && !WIN32) return cb(new Error('This platform is not supported.'), false);
+
       var self = this;
 
       // Get latest released version from Github.
@@ -146,7 +149,7 @@ var GhReleases = (function (_events$EventEmitter) {
         return self._getFeedUrl(tag);
       }).then(function (feedUrl) {
         // Set feedUrl in auto_updater.
-        _this2.autoUpdater.setFeedUrl(feedUrl);
+        _this2.autoUpdater.setFeedURL(feedUrl);
 
         cb(null, true);
       }).catch(function (err) {
