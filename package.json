@@ -19,7 +19,9 @@
   "homepage": "https://github.com/jenslind/electron-gh-releases-test-v2#readme",
   "devDependencies": {
     "electron-packager": "^5.1.1",
-    "electron-prebuilt": "^0.35.1"
+    "electron-prebuilt": "^0.35.1",
+    "grunt": "^0.4.5",
+    "grunt-electron-installer": "^1.1.0"
   },
   "dependencies": {
     "got": "^5.1.0",
